@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		CC8772EE2F04508E00B50C03 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8772ED2F04508E00B50C03 /* PhotoView.swift */; };
+		CC8772F02F04644B00B50C03 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8772EF2F04644B00B50C03 /* Photo.swift */; };
+		CC8772F22F04655000B50C03 /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8772F12F04655000B50C03 /* PhotoViewModel.swift */; };
 		CC9B7C212F01B7A800474CCE /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CC9B7C202F01B7A800474CCE /* FirebaseAuth */; };
 		CC9B7C232F01B7A800474CCE /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CC9B7C222F01B7A800474CCE /* FirebaseFirestore */; };
 		CC9B7C252F01B7A800474CCE /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = CC9B7C242F01B7A800474CCE /* FirebaseStorage */; };
@@ -23,6 +25,8 @@
 
 /* Begin PBXFileReference section */
 		CC8772ED2F04508E00B50C03 /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
+		CC8772EF2F04644B00B50C03 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		CC8772F12F04655000B50C03 /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
 		CC9B7C292F01D7D900474CCE /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		CC9B7C2A2F01D7D900474CCE /* SnacktacularApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnacktacularApp.swift; sourceTree = "<group>"; };
 		CC9B7C2C2F01D7D900474CCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -64,6 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				CC9B7C372F01EF3600474CCE /* Spot.swift */,
+				CC8772EF2F04644B00B50C03 /* Photo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -72,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				CC9B7C3B2F01F39D00474CCE /* SpotViewModel.swift */,
+				CC8772F12F04655000B50C03 /* PhotoViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -185,9 +191,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC8772F02F04644B00B50C03 /* Photo.swift in Sources */,
 				CC9B7C3A2F01F0A600474CCE /* SpotDetailView.swift in Sources */,
 				CC9B7C302F01D7D900474CCE /* LoginView.swift in Sources */,
 				CC8772EE2F04508E00B50C03 /* PhotoView.swift in Sources */,
+				CC8772F22F04655000B50C03 /* PhotoViewModel.swift in Sources */,
 				CC9B7C3C2F01F39D00474CCE /* SpotViewModel.swift in Sources */,
 				CC9B7C312F01D7D900474CCE /* SnacktacularApp.swift in Sources */,
 				CC9B7C362F01D82E00474CCE /* ListView.swift in Sources */,
