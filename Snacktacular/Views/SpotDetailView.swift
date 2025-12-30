@@ -9,15 +9,21 @@ import SwiftUI
 
 struct SpotDetailView: View {
     @State var spot: Spot // pass in value from ListView
+    @State private var photoSheetIsPresented = false
+    @State private var showingAlert = false // Alert user if they need to save Spot before adding a Photo
+    private let alertMessage = "Cannot add a Photo until you save the Spot."
     @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
         VStack {
             Group {
                 TextField("name", text: $spot.name)
                     .font(.title)
+                    .autocorrectionDisabled()
                 
                 TextField("address", text: $spot.address)
                     .font(.title2)
+                    .autocorrectionDisabled()
             }
             .textFieldStyle(.roundedBorder)
             .overlay {
@@ -25,6 +31,21 @@ struct SpotDetailView: View {
                     .stroke(.gray.opacity(0.5), lineWidth: 2)
             }
             .padding(.horizontal)
+            
+            Button { // Photo Button
+                if spot.id == nil { // Ask if you want to save
+                    showingAlert.toggle()
+                } else { // Go directly to PhotoView
+                    photoSheetIsPresented.toggle()
+                }
+            } label: {
+                Image(systemName: "camera.fill")
+                Text("Photo")
+            }
+            .bold()
+            .buttonStyle(.borderedProminent)
+            .tint(.snack)
+            
             
             Spacer()
         }
@@ -38,14 +59,41 @@ struct SpotDetailView: View {
             }
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Save") {
-                    let success = SpotViewModel.saveSpot(spot: spot)
-                    if success {
-                        dismiss()
-                    } else {
-                        print("😡 Dang! Error saving spot!")
-                    }
+                    saveSpot()
+                    dismiss()
                 }
             }
+        }
+        .alert(alertMessage, isPresented: $showingAlert) {
+            Button("Cancel", role: .cancel) {}
+            
+            Button("Save") {
+                // We want to return spot.id after saving a new Spot. Right now it's nil
+                Task {
+                    guard let id = await SpotViewModel.saveSpot(spot: spot) else {
+                        print("😡 Error: Saving spot in alert returned nil")
+                        return
+                    }
+                    spot.id = id
+                    print("spot.id: \(id)")
+                    photoSheetIsPresented.toggle() // Now open sheet & move to PhotoView
+                }
+            }
+        }
+        .fullScreenCover(isPresented: $photoSheetIsPresented) {
+            PhotoView(spot: spot)
+            
+        }
+    }
+    
+    func saveSpot() {
+        Task {
+            guard let id = await SpotViewModel.saveSpot(spot: spot) else {
+                print("😡 Error: Saving spot from Save button")
+                return
+            }
+            print("spot.id: \(id)")
+            print("😎 Nice Spot save!")
         }
     }
 }
