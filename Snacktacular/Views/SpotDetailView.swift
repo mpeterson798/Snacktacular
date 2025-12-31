@@ -47,6 +47,27 @@ struct SpotDetailView: View {
             .tint(.snack)
             
             
+            ScrollView(.horizontal) {
+                HStack {
+                    ForEach([Photo.preview,Photo.preview,Photo.preview,Photo.preview,Photo.preview]) { photo in
+                        let url = URL(string: photo.imageURLString)
+                        AsyncImage(url: url) { image in
+                            image
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 80, height: 80)
+                                .clipped()
+                        } placeholder: {
+                            ProgressView()
+                        }
+
+                        
+                    }
+                }
+            }
+            .frame(height: 80)
+            
+            
             Spacer()
         }
         .navigationBarBackButtonHidden()
